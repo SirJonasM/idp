@@ -5,15 +5,10 @@ This example must be built with nightly `cargo`, and the target `riscv64gc-unkno
 1. `rustup toolchain install nightly`
 2. `rustup +nightly target add riscv64gc-unknown-none-elf`
 
-Build with:
+Build and then run with qemu:
 
 ```
 cargo +nightly build --bin risc-v-rust-bare-metal
-```
-
-Run on QEMU:
-
-```
 qemu-system-riscv64 -machine virt -bios target/riscv64gc-unknown-none-elf/debug/risc-v-rust-bare-metal -nographic
 ```
 

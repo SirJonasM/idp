@@ -40,7 +40,7 @@ pub extern "C" fn main() -> ! {
         prime = next_prime(prime);
         let message = format!("Prime: {}\n", prime);
         let temp_str = message.as_str();
-
+        for i in 0..5000000 {}
         uart_print(temp_str);
     }
 }
