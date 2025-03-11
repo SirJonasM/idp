@@ -35,7 +35,7 @@ pub extern "C" fn main() -> ! {
     let mut ctr = 1;
 
     loop {
-        // let message = format!("Ticks: {}\n", ctr);
+        let message = format!("Ticks: {}\n", ctr);
         // let temp_str = message.as_str();
 
         uart_print("Test");
