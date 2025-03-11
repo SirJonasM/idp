@@ -14,53 +14,6 @@ use alloc::vec;
 use alloc::vec::Vec;
 
 global_asm!(include_str!("entry.s"));
-struct PrimeGenerator {
-    primes: Vec<usize>,
-    sieve: Vec<bool>,
-    limit: usize,
-}
-
-impl PrimeGenerator {
-    fn new() -> Self {
-        Self {
-            primes: Vec::new(),
-            sieve: vec![true; 10], // Initial small sieve
-            limit: 10,
-        }
-    }
-
-    fn expand_sieve(&mut self) {
-        self.limit *= 2; // Double the sieve size
-        self.sieve = vec![true; self.limit];
-        self.sieve[0] = false;
-        self.sieve[1] = false;
-
-        for &p in &self.primes {
-            let mut multiple = p * p;
-            while multiple < self.limit {
-                self.sieve[multiple] = false;
-                multiple += p;
-            }
-        }
-    }
-
-    fn next_prime(&mut self) -> usize {
-        loop {
-            for i in (self.primes.last().copied().unwrap_or(1) + 1)..self.limit {
-                if self.sieve[i] {
-                    self.primes.push(i);
-                    let mut multiple = i * i;
-                    while multiple < self.limit {
-                        self.sieve[multiple] = false;
-                        multiple += i;
-                    }
-                    return i;
-                }
-            }
-            self.expand_sieve();
-        }
-    }
-}
 
 static mut ARENA: [u8; 50000] = [0; 50000];
 
@@ -82,14 +35,30 @@ fn uart_print(message: &str) {
 pub extern "C" fn main() -> ! {
     uart_print("Hello, world!\n");
 
-    let mut prime_generator = PrimeGenerator::new();
+    let mut prime = 2;
     loop {
-        let prime = prime_generator.next_prime();
+        prime = next_prime(prime);
         let message = format!("Ticks: {}\n", prime);
         let temp_str = message.as_str();
 
         uart_print(temp_str);
     }
+}
+fn next_prime(prime: usize) -> usize {
+    let mut i = prime + 1;
+    while !is_prime(i) {
+        i += 1;
+    }
+    i
+}
+fn is_prime(prime: usize) -> bool {
+    let max = prime.isqrt();
+    for i in 2..max {
+        if prime % i == 0 {
+            return false;
+        }
+    }
+    true
 }
 
 #[panic_handler]
@@ -97,4 +66,3 @@ fn panic(_info: &PanicInfo) -> ! {
     uart_print("Something went wrong.");
     loop {}
 }
-
