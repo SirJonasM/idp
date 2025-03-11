@@ -36,11 +36,10 @@ pub extern "C" fn main() -> ! {
     uart_print("Hello, world!\n");
 
     let mut prime = 1;
-    loop {
+    for i in 0..100 {
         prime = next_prime(prime);
         let message = format!("Prime: {}\n", prime);
         let temp_str = message.as_str();
-        for i in 0..5000000 {}
         uart_print(temp_str);
     }
 }
