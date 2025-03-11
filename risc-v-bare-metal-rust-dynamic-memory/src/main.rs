@@ -42,6 +42,9 @@ pub extern "C" fn main() -> ! {
         let temp_str = message.as_str();
         uart_print(temp_str);
     }
+    loop {
+        for i in 0..5000000 {}
+    }
 }
 fn next_prime(last_prime: usize) -> usize {
     let mut i = last_prime + 1;
@@ -55,6 +58,9 @@ fn is_prime(prime: usize) -> bool {
     let max = prime.isqrt();
     while i <= max {
         if prime % i == 0 {
+            let message = format!("{}%{} = 0", prime, i);
+            let temp_str = message.as_str();
+            uart_print(temp_str);
             return false;
         }
         i += 1;
