@@ -62,7 +62,7 @@ impl PrimeGenerator {
     }
 }
 
-static mut ARENA: [u8; 50000] = [0; 50000];
+static mut ARENA: [u8; 500000] = [0; 50000];
 
 #[global_allocator]
 static ALLOCATOR: Talck<spin::Mutex<()>, ClaimOnOom> =
