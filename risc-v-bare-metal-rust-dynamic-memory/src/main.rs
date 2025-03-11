@@ -35,29 +35,30 @@ fn uart_print(message: &str) {
 pub extern "C" fn main() -> ! {
     uart_print("Hello, world!\n");
 
-    let mut prime = 2;
+    let mut prime = 1;
     loop {
         prime = next_prime(prime);
-        let message = format!("Ticks: {}\n", prime);
+        let message = format!("Prime: {}\n", prime);
         let temp_str = message.as_str();
 
         uart_print(temp_str);
     }
 }
-fn next_prime(prime: usize) -> usize {
-    let mut i = prime + 1;
+fn next_prime(last_prime: usize) -> usize {
+    let mut i = last_prime + 1;
     while !is_prime(i) {
         i += 1;
     }
     i
 }
 fn is_prime(prime: usize) -> bool {
-    if prime == 2 { return true;}
+    let mut i = 0;
     let max = prime.isqrt();
-    for i in 2..max {
+    while i < max {
         if prime % i == 0 {
             return false;
         }
+        i += 1;
     }
     true
 }
