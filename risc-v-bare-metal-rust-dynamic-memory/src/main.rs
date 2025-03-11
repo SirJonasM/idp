@@ -40,10 +40,8 @@ pub extern "C" fn main() -> ! {
         prime = next_prime(prime);
         let message = format!("Prime: {}\n", prime);
         let temp_str = message.as_str();
-        
-        for i in 0..5000000{
-            
-        }
+
+        for i in 0..5000000 {}
         uart_print(temp_str);
     }
 }
@@ -56,8 +54,7 @@ fn next_prime(last_prime: usize) -> usize {
 }
 fn is_prime(prime: usize) -> bool {
     let mut i = 0;
-    let max = prime.isqrt();
-    while i < max {
+    while i < prime {
         if prime % i == 0 {
             return false;
         }
