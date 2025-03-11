@@ -21,32 +21,16 @@ Sample output:
 
 ```
 Hello, world!
-Ticks: 1
-Ticks: 2
-Ticks: 3
-Ticks: 4
-Ticks: 5
-Ticks: 6
-Ticks: 7
-Ticks: 8
-Ticks: 9
-Ticks: 10
-Ticks: 11
-Ticks: 12
-Ticks: 13
-Ticks: 14
-Ticks: 15
-Ticks: 16
-Ticks: 17
-Ticks: 18
+Prime: 2
+Prime: 3
+Prime: 5
+Prime: 7
+Prime: 11
+Prime: 13
+Prime: 17
+Prime: 19
 ```
-
-## Problems with output?
-
-I have personally only seen issues if using the dynamically allocated strings sometimes. The version as it is here works on my machine. *Perhaps* there is some problem with the `talc` library and we end up throwing bad bytes at UART and we throw QEMU off. When I remove any references to the dynamic strings, then things work well.
-
-Therefore, if you see any issues with the UART output, try removing all the dynamic strings and maybe get rid of the custom allocator altogether and try again.
 
 ## Article
 
-This code is meant to accompany the article at http://popovicu.com/posts/bare-metal-rust-risc-v-with-dynamic-memory
+This code is based of this article http://popovicu.com/posts/bare-metal-rust-risc-v-with-dynamic-memory
