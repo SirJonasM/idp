@@ -40,6 +40,7 @@ pub extern "C" fn main() -> ! {
         prime = next_prime(prime);
         uart_print(&format!("Prime: {}\n", prime));
     }
+    uart_print("Finished");
     loop {
         for i in 0..5000000 {}
     }
