@@ -9,9 +9,6 @@ use talc::{ClaimOnOom, Span, Talc, Talck};
 
 #[macro_use]
 extern crate alloc;
-use alloc::format;
-use alloc::vec;
-use alloc::vec::Vec;
 
 global_asm!(include_str!("entry.s"));
 
@@ -35,13 +32,16 @@ fn uart_print(message: &str) {
 pub extern "C" fn main() -> ! {
     uart_print("Hello, world!\n");
 
-    let mut i = 0;
+    let mut ctr = 1;
+
     loop {
-        let message = format!("Ticks: {}\n", i);
+        let message = format!("Ticks: {}\n", ctr);
         let temp_str = message.as_str();
+
         uart_print(temp_str);
-        i += 1;
-        for i in 0..500000 {}
+        for _ in 0..5000000 {}
+
+        ctr += 1;
     }
 }
 
