@@ -38,22 +38,20 @@ pub extern "C" fn main() -> ! {
     let mut prime = 1;
     for i in 0..100 {
         prime = next_prime(prime);
-        let message = format!("Prime: {}\n", prime);
-        let temp_str = message.as_str();
-        uart_print(temp_str);
+        uart_print(&format!("Prime: {}\n", prime));
     }
     loop {
         for i in 0..5000000 {}
     }
 }
-fn next_prime(last_prime: usize) -> usize {
+fn next_prime(last_prime: u64) -> u64 {
     let mut i = last_prime + 1;
     while !is_prime(i) {
         i += 1;
     }
     i
 }
-fn is_prime(prime: usize) -> bool {
+fn is_prime(prime: u64) -> bool {
     let mut i = 2;
     let limit = prime.isqrt();
     while i <= limit {
