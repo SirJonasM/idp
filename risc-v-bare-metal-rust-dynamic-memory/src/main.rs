@@ -53,16 +53,16 @@ fn next_prime(last_prime: usize) -> usize {
     }
     i
 }
-fn is_prime(n: usize) -> bool {
-    if n <= 1 {
-        return false;
-    }
-    for a in 2..n {
-        if n % a == 0 {
-            return false; // if it is not the last statement you need to use `return`
+fn is_prime(prime: usize) -> bool {
+    let mut i = 2;
+    let limit = prime.isqrt();
+    while i <= limit {
+        if prime % i == 0 {
+            return false;
         }
+        i += 1;
     }
-    true // last value to return
+    true
 }
 
 #[panic_handler]
