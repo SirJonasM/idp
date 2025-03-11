@@ -53,7 +53,7 @@ fn next_prime(last_prime: usize) -> usize {
     }
     i
 }
-fn is_prime(n: u32) -> bool {
+fn is_prime(n: usize) -> bool {
     if n <= 1 {
         return false;
     }
