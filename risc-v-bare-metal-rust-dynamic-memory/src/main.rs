@@ -41,6 +41,7 @@ pub extern "C" fn main() -> ! {
         let temp_str = message.as_str();
         uart_print(temp_str);
         i += 1;
+        for i in 0..500000 {}
     }
 }
 
