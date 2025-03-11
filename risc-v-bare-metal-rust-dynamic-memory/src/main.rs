@@ -53,7 +53,7 @@ fn next_prime(last_prime: usize) -> usize {
 fn is_prime(prime: usize) -> bool {
     let mut i = 2;
     let max = prime.isqrt();
-    while i < max {
+    while i <= max {
         if prime % i == 0 {
             return false;
         }
