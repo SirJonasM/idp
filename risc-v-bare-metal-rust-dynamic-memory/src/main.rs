@@ -52,6 +52,7 @@ fn next_prime(prime: usize) -> usize {
     i
 }
 fn is_prime(prime: usize) -> bool {
+    if prime == 2 { return true;}
     let max = prime.isqrt();
     for i in 2..max {
         if prime % i == 0 {
