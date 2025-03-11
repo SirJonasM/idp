@@ -62,7 +62,7 @@ impl PrimeGenerator {
     }
 }
 
-static mut ARENA: [u8; 500000] = [0; 50000];
+static mut ARENA: [u8; 500000] = [0; 500000];
 
 #[global_allocator]
 static ALLOCATOR: Talck<spin::Mutex<()>, ClaimOnOom> =
@@ -97,4 +97,3 @@ fn panic(_info: &PanicInfo) -> ! {
     uart_print("Something went wrong.");
     loop {}
 }
-
