@@ -52,11 +52,18 @@ fn next_prime(last_prime: u64) -> u64 {
     }
     i
 }
+
+fn mod_no_m_extension(mut a: u64, b: u64) -> u64 {
+    while a >= b {
+        a -= b;
+    }
+    a
+}
 fn is_prime(prime: u64) -> bool {
     let mut i = 2;
     let limit = prime.isqrt();
     while i <= limit {
-        if prime % i == 0 {
+        if mod_no_m_extension(prime, i) == 0 {
             return false;
         }
         i += 1;
