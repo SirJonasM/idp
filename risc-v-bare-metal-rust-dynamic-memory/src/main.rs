@@ -7,8 +7,8 @@ use core::panic::PanicInfo;
 use core::ptr;
 use talc::{ClaimOnOom, Span, Talc, Talck};
 
-// #[macro_use]
-// extern crate alloc;
+#[macro_use]
+extern crate alloc;
 
 global_asm!(include_str!("entry.s"));
 
