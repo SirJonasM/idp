@@ -38,7 +38,7 @@ pub extern "C" fn main() -> ! {
         let message = format!("Ticks: {}\n", ctr);
         let temp_str = message.as_str();
 
-        uart_print(temp_str);
+        uart_print("Test");
         for _ in 0..5000000 {}
 
         ctr += 1;
