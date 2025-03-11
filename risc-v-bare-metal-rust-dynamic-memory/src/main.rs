@@ -59,10 +59,10 @@ fn is_prime(prime: u64) -> bool {
     let limit = prime.isqrt();
     while i <= limit {
         let modu = prime % i;
+        uart_print(&format!("{} % {} == {}\n", prime, i, modu));
         if modu == 0 {
             return false;
         }
-        uart_print(&format!("{} % {} == {}\n", prime, i, modu));
         i += 1;
     }
     true
