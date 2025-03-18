@@ -1,0 +1,56 @@
+[target.riscv64gc-unknown-none-elf]
+# Either kind should work as a linker
+linker = "riscv-rtems7-gcc"
+# linker = "riscv-rtems7-clang"
+rustflags = [
+    # See `rustc --target=riscv64gc-unknown-none-elf  --print target-cpus`
+    "-Ctarget-cpu=generic-rv64",
+    # The linker is a gcc compatible C Compiler
+    "-Clinker-flavor=gcc",
+    # Pass these options to the linker
+    "-Clink-arg=-march=rv64imafdc",
+    "-Clink-arg=-mabi=lp64d",
+    "-Clink-arg=-mcmodel=medany",
+    # Rust needs libatomic.a to satisfy Rust's compiler-builtin library
+    "-Clink-arg=-latomic",
+]
+runner = "qemu-system-riscv64 -M virt -nographic -bios"
+
+[target.riscv32i-unknown-none-elf]
+linker = "riscv-rtems7-gcc"
+rustflags = [
+    "-Ctarget-cpu=generic-rv32",
+    "-Clinker-flavor=gcc",
+    "-Clink-arg=-march=rv32imafdc",
+    "-Clink-arg=-mabi=lp32d",
+    "-Clink-arg=-mcmodel=medany",
+    "-Clink-arg=-latomic",
+]
+runner = "qemu-system-riscv32 -M virt -nographic -bios"
+
+[target.riscv32im-unknown-none-elf]
+linker = "riscv-rtems7-gcc"
+rustflags = [
+    "-Ctarget-cpu=generic-rv32",
+    "-Clinker-flavor=gcc",
+    "-Clink-arg=-march=rv32imafdc",
+    "-Clink-arg=-mabi=lp32d",
+    "-Clink-arg=-mcmodel=medany",
+    "-Clink-arg=-latomic",
+]
+runner = "qemu-system-riscv32 -M virt -nographic -bios"
+
+[build]
+target = [
+    "riscv64gc-unknown-none-elf", 
+    "riscv32i-unknown-none-elf", 
+    "riscv32im-unknown-none-elf",
+    "riscv32imac-unknown-none-elf",
+    "riscv32imafc-unknown-none-elf",
+    "riscv32imc-unknown-none-elf",
+    "riscv64gc-unknown-none-elf",
+    "riscv64imac-unknown-none-elf"
+]
+
+[unstable]
+build-std = ["core"]

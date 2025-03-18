@@ -1,11 +1,9 @@
 #![no_std]
 #![no_main]
-#![feature(const_mut_refs)]
 
 use core::arch::global_asm;
 use core::panic::PanicInfo;
 use core::ptr;
-use talc::{ClaimOnOom, Span, Talc, Talck};
 
 global_asm!(include_str!("entry.s"));
 
