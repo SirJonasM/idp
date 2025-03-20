@@ -7,7 +7,7 @@ The RTEMS Documentation (see @sources) has a guide to Build Bare Metal Rust for 
 
 What is needed:
 - RTEMS Tools to build BSP and the linking process.
-- Configuration file for RTEMS.
+- Configuration file `init.c` for RTEMS.
 - A Board Support Package.
 - A prepared Rust Project for RTEMS.
 
