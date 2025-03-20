@@ -107,7 +107,7 @@ SECTIONS {
   _STACK_PTR = .;
 }
 ```
-The linker script defines the memory layout of the program, specifying where different sections of code and data should be placed in RAM. It assigns the text (code), data, read-only data, and BSS (uninitialized data) sections to the memory region starting at `0x80000000`. Additionally, it aligns memory properly and defines `_STACK_PTR`, which sets up the stack pointer for the program. This ensures that the compiled binary is correctly structured for execution on the target RISC-V hardware.
+The linker script defines the memory layout of the program, specifying where different sections of code and data should be placed in RAM. It assigns the `text` (code), `data`, read-only data(`rodata`), and `BSS` (uninitialized data) sections to the memory region starting at `0x80000000`. Additionally, it aligns memory properly and defines `_STACK_PTR`, which sets up the stack pointer for the program. This ensures that the compiled binary is correctly structured for execution on the target RISC-V hardware.
 
 There are several ways to tell cargo to use the link script but one simple way is to add a build script `build.rs` in the root of the project next to the link script.
 

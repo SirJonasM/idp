@@ -79,7 +79,7 @@ Linking is done by compiling the RTEMS init.c and then using the RTEMS toolchain
 
 This produces a `<project-name>.exe` that then can be run in QEMU with:
 ```bash
-rtems-run --rtems-bsp=<bsp_name> <preject_name>.exe
+rtems-run --rtems-bsp=<bsp_name> <project_name>.exe
 ```
 
 
