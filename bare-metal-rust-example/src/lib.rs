@@ -5,7 +5,6 @@ use core::alloc::{GlobalAlloc, Layout};
 use core::ffi::c_char;
 use core::ffi::c_void;
 use core::fmt::Write;
-use core::ptr;
 extern crate alloc;
 use alloc::vec::Vec;
 unsafe extern "C" {
@@ -132,4 +131,8 @@ fn panic(panic: &core::panic::PanicInfo) -> ! {
             message.as_ptr(),
         );
     }
+}
+
+mod test {
+    
 }

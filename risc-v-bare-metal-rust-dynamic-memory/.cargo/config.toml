@@ -1,0 +1,10 @@
+[build]
+target = [
+    "riscv32i-unknown-none-elf", 
+    "riscv32im-unknown-none-elf",
+    "riscv32imac-unknown-none-elf",
+    "riscv32imafc-unknown-none-elf",
+    "riscv32imc-unknown-none-elf",
+    "riscv64gc-unknown-none-elf", 
+    "riscv64imac-unknown-none-elf"
+]

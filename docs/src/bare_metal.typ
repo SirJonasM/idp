@@ -123,7 +123,7 @@ The build process is started with the command:
 cargo build --target <target>
 ```
 == Run in QEMU
-To run the program in qemu choose the correct risc-v architecture and run 
+To run the program in QEMU choose the correct risc-v architecture and run 
 ```bash 
 # for 32-Bit architectures
 qemu-system-riscv32 -machine virt -bios <path/to/executable> -nographic

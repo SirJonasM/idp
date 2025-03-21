@@ -1,0 +1,2 @@
+= Conclusion
+This document lays the foundation for implementing Rust on RISC-V in a bare-metal and RTEMS environment, providing insights into toolchain setup, memory management, and simulation via QEMU. While essential groundwork has been completed, the next step involves translating these findings into actual hardware implementation on a RISC-V instantiated FPGA. This transition will allow for deeper evaluation of performance, security, and real-world applicability, forming the basis for the bachelor thesis on Rust for FPBGA-SoC with RISC-V.

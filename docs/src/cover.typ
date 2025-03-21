@@ -6,7 +6,7 @@
   align(horizon + left)[
     #text(size: 24pt, title)\
     #v(1em)
-    Rust for FBGA-SoC with RISC-V: Evaluation on security and performance  
+    Rust for FPBGA-SoC with RISC-V: Evaluation on security and performance  
     #v(1em)
     #text(size:16pt, author)
     #linebreak()

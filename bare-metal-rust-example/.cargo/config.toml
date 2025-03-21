@@ -21,7 +21,7 @@ linker = "riscv-rtems7-gcc"
 rustflags = [
     "-Ctarget-cpu=generic-rv32",
     "-Clinker-flavor=gcc",
-    "-Clink-arg=-march=rv32imafdc",
+    "-Clink-arg=-march=rv32im",
     "-Clink-arg=-mabi=lp32d",
     "-Clink-arg=-mcmodel=medany",
     "-Clink-arg=-latomic",
@@ -33,7 +33,31 @@ linker = "riscv-rtems7-gcc"
 rustflags = [
     "-Ctarget-cpu=generic-rv32",
     "-Clinker-flavor=gcc",
-    "-Clink-arg=-march=rv32imafdc",
+    "-Clink-arg=-march=rv32im",
+    "-Clink-arg=-mabi=lp32d",
+    "-Clink-arg=-mcmodel=medany",
+    "-Clink-arg=-latomic",
+]
+runner = "qemu-system-riscv32 -M virt -nographic -bios"
+
+[target.riscv32imac-unknown-none-elf]
+linker = "riscv-rtems7-gcc"
+rustflags = [
+    "-Ctarget-cpu=generic-rv32",
+    "-Clinker-flavor=gcc",
+    "-Clink-arg=-march=rv32imac",
+    "-Clink-arg=-mabi=lp32d",
+    "-Clink-arg=-mcmodel=medany",
+    "-Clink-arg=-latomic",
+]
+runner = "qemu-system-riscv32 -M virt -nographic -bios"
+
+[target.riscv32imafc-unknown-none-elf]
+linker = "riscv-rtems7-gcc"
+rustflags = [
+    "-Ctarget-cpu=generic-rv32",
+    "-Clinker-flavor=gcc",
+    "-Clink-arg=-march=rv32imafc",
     "-Clink-arg=-mabi=lp32d",
     "-Clink-arg=-mcmodel=medany",
     "-Clink-arg=-latomic",

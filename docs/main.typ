@@ -12,4 +12,5 @@
 #include "src/bare_metal.typ"
 #include "src/rtems.typ"
 #include "src/milestones.typ"
+#include "src/conclusion.typ"
 #include "src/sources.typ"

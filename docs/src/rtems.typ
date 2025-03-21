@@ -16,7 +16,7 @@ A Board Support Package (BSP) in RTEMS is a collection of low-level software com
 
 RTEMS supports RISC-V architecture with BSPs for platforms such as QEMU RISC-V emulation. These BSPs provide essential support for booting, handling interrupts, and managing peripherals, allowing RTEMS applications to run on real and emulated RISC-V hardware.
 
-A BSP can be configured for more specific cases. The configuration is done when building the specifig BSP via a a `ini` file. Configuration options can be listed by running the command line tool `waf` from the RTEMS repository with the `bspdefaults` subcommand.
+A BSP can be configured for more specific cases. The configuration is done when building the specific BSP via a a `ini` file. Configuration options can be listed by running the command line tool `waf` from the RTEMS repository with the `bspdefaults` subcommand.
 Here is a snippet of the command output for the target `riscv/rv32i`:
 ```bash
 λ ./waf bspdefaults --rtems-bsp=riscv/rv32i
@@ -38,20 +38,19 @@ RTEMS_NEWLIB = True
 RTEMS_PARAVIRT = False
 ```
 == Rust Project for RISC-V RTEMS
-The setup for a Rust project in this enviroment is similar to the Bare Metal from @BareMetal. Except there is now no linker script and no start up assmeby file needed. 
+The setup for a Rust project in this environment is similar to the Bare Metal from @BareMetal. Except there is now no linker script and no start up assmeby file needed. 
 
-RTEMS also provides allocater functions that rust can be linked to to enable dynamic memory. Aswell as a print function `printk()` to write to a console.
-Similar to the Pure Bare Metal approach rust needs to have a panic handler but here it can be forwarded to the rtems_panic handler `rtems_panic()`
+RTEMS provides an extensive library that includes allocator functions, which can be linked to Rust to enable dynamic memory management. Additionally, the library offers a `printk()` function for console output. Similar to the pure bare-metal approach, Rust requires a panic handler in this environment, which can be forwarded to the RTEMS-provided `rtems_panic()` function. Beyond these, the RTEMS library offers a wide range of additional system functions, including task management, synchronization primitives, and real-time scheduling capabilities, further supporting embedded system development.
 
 The entry point to the program is a function that has to be implemented as 
 ```rust
 #[unsafe(no_mangle)]
 extern "C" fn Init() {...}
 ```
-Before exiting the program the RTEMS `rtems_shutdown_executive` is called to shutdown the RTMES system in a controlled manner.
+Before exiting the program the RTEMS `rtems_shutdown_executive()` function is called to shutdown the RTMES system in a controlled manner.
 
 To specify some build flags a `.cargo/config.toml` is defined where the configuration for cargo is defined. In it targets can be defined and configured.
-Here is a example to build for a the `riscv64gc-unknown-none-elf` target:
+Here is a example to build for a `riscv64gc-unknown-none-elf` target:
 ```toml
 [target.riscv64gc-unknown-none-elf]
 # Either kind should work as a linker
@@ -72,7 +71,7 @@ rustflags = [
 runner = "qemu-system-riscv64 -M virt -nographic -bios"
 ```
 
-The project can then be build with `cargo build`. The target of the BSP and the rustc target have to be same to assure compatibility.
+The project can then be build with `cargo build`. The target of the BSP and the rustc target have to be same to assure compatibility. Rust lets you define more than one target in the `.cargo/config.toml`. `cargo build` will then create binaries for each target. To only build for one specific target cargo has the `--target` flag.  
 
 == Linking and running in QEMU
 Linking is done by compiling the RTEMS init.c and then using the RTEMS toolchain to link it with the Rust static library. In this process linker flags that are defined by the used BSP are used.
